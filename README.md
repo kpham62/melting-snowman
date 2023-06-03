@@ -1,8 +1,11 @@
 # Melting Snowman
 
 Group Members: Cynthia Lopez, Kenny Pham, Thomas Huynh
+
 Class: CSCI 143 Obj-Orient Prog II with Java
+
 School: Highline College
+
 Professor: Nizami, Syeda
 
 Our game is called Melting Snowman, modified from the classic game "hangman". Users will start out with a fully built snowman. Users will then answer math problems and each time they get a math problem wrong, one part of the snowman will melt.
