@@ -1,5 +1,6 @@
 /*
 CSCI 143 Obj-Orient Prog II with Java
+Highline College
 Professor Nizami, Syeda
 Team: Cynthia Lopez, Thomas Huynh, Kenny Pham
 Game Name: Melting Snowman
@@ -8,30 +9,32 @@ Game Name: Melting Snowman
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.Timer;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.Objects;
 import java.util.Random;
 
-public class MeltingSnowman{
+public class MeltingSnowman {
 
-    //creating all the necessary variables
-    JPanel animationPanel = new JPanel(); //image contained in this panel
-    BufferedImage myImage; //image that will be displayed
-    int wrongAnswers = 0; //the number of wrong answers
-    int problemIndex = 0; //the index of the current problem
-    int[][] problems = new int[9][2]; //the array of problems
-    Random rand = new Random(); //random generator for problems
+    // Creating all the necessary variables
+    JPanel animationPanel = new JPanel(); // Image contained in this panel
+    BufferedImage myImage; // Image that will be displayed
+    int wrongAnswers = 0; // Number of wrong answers
+    int problemIndex = 0; // Index of the current problem
+    int[][] problems = new int[9][2]; // Array of problems
+    Random rand = new Random(); // Random generator for problems
 
-    //timer for animation
+    // Timer for animation
     private final Timer wiggleTimer;
     private boolean isWiggling = false;
 
-    //start wiggling win image
+    // Title screen animation variables
+    private int titleScreenY = 0; // Starting y-position of the title screen
+    private final Timer titleScreenTimer;
+
+    // Start wiggling win image
     private void startWiggleAnimation() {
         if (!isWiggling) {
             isWiggling = true;
@@ -39,16 +42,16 @@ public class MeltingSnowman{
         }
     }
 
-    //stop wiggling win image
+    // Stop wiggling win image
     private void stopWiggleAnimation() {
         isWiggling = false;
         wiggleTimer.stop();
     }
 
-    //generates math problems depending on difficulty
-    private void generateProblems(int difficulty){
+    // Generates math problems depending on difficulty
+    private void generateProblems(int difficulty) {
         int start = 0, end = 0;
-        //range defined for random numbers based on difficulty
+        // Range defined for random numbers based on difficulty
         switch (difficulty) {
             case 0 -> {
                 start = 1;
@@ -64,8 +67,8 @@ public class MeltingSnowman{
             }
         }
 
-        //generates problems
-        for(int i=0; i<5; i++){
+        // Generates problems
+        for (int i = 0; i < 5; i++) {
             problems[i][0] = rand.nextInt(end - start) + start;
             problems[i][1] = rand.nextInt(end - start) + start;
         }
@@ -73,10 +76,33 @@ public class MeltingSnowman{
 
     public MeltingSnowman() {
 
-        //import images and labels created
+        // Import images and labels created
         importImage("images/title.png");
         JLabel titleScreen = new JLabel(new ImageIcon(myImage));
         titleScreen.setIcon(new ImageIcon(new javax.swing.ImageIcon(Objects.requireNonNull(getClass().getResource("images/title.png"))).getImage().getScaledInstance(500, 400, Image.SCALE_SMOOTH)));
+
+        // Timer for title screen animation
+        titleScreenTimer = new Timer(70, new ActionListener() { // Timing of the title screen animation
+            boolean movingUp = true; // Flag indicating if the title screen is moving up or down
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (movingUp) {
+                    titleScreenY -= 1; // Move title screen up by 1 pixel
+                    if (titleScreenY <= 0) {
+                        movingUp = false; // Reverse direction when reaching the top
+                    }
+                } else {
+                    titleScreenY += 1; // Move title screen down by 1 pixel
+                    if (titleScreenY >= 20) {
+                        movingUp = true; // Reverse direction when reaching the bottom
+                    }
+                }
+                titleScreen.setLocation(titleScreen.getX(), titleScreenY); // Update title screen position
+            }
+        });
+
+        titleScreenTimer.start(); // Start the title screen animation
         importImage("images/win.png");
         JLabel win = new JLabel(new ImageIcon(myImage));
         win.setIcon(new ImageIcon(new javax.swing.ImageIcon(Objects.requireNonNull(getClass().getResource("images/win.png"))).getImage().getScaledInstance(350, 300, Image.SCALE_SMOOTH)));
