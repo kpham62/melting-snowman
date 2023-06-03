@@ -1,6 +1,6 @@
 # Melting Snowman
 
-Group Members: Cynthia Lopez, Kenny Pham, Thomas Huynh
+Group Members: Cynthia Lopez, Thomas Huynh, Kenny Pham
 
 Class: CSCI 143 Obj-Orient Prog II with Java
 
