@@ -39,8 +39,8 @@ public class SnowFlake extends JLabel {
             it resets it's psostition back to the top
             */
             public void actionPerformed(ActionEvent e) {
-                if(getY() > panel.getHeight()) {
-                    setLocation((int)(Math.random() * panel.getWidth()), 0);
+                if(getY() > panel.getHeight()) { //tests if Y passes the bottom of the panel
+                    setLocation((int)(Math.random() * panel.getWidth()), 0); //resets the snowflake at a new x coordinate and at the top of the panel
                 }
 
                 //move the snowflake down the panel at the defined speed
