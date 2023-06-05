@@ -4,71 +4,64 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Objects;
 
-public class EndScreen extends GamePanel{
-    JPanel UIPanel = new JPanel();
-    JLabel outcomeScreen;
-    private Timer wiggleTimer;
-    private boolean isWiggling = false;
+public class EndScreen extends GamePanel{ //creates EndScreen that inherits GamePanel
+    JPanel UIPanel = new JPanel(new FlowLayout()); //creates a bottom panel that contains the UI
+    JLabel outcomeScreen; //creates a label to contain image
+    private Timer wiggleTimer; //creates a timer to animate the outcomeScreen
 
-    private void startWiggleAnimation() {
-        if (!isWiggling) {
-            isWiggling = true;
-            wiggleTimer.start();
-        }
-
-    }
-
-    private void stopWiggleAnimation() {
-        isWiggling = false;
-        wiggleTimer.stop();
-    }
-
-    public EndScreen(String outcome, JFrame frame) {
-        setFrame(frame);
+    public EndScreen(String outcome, JFrame frame) { //public constructor for EndScreen with parameters outcome and frame
+        setFrame(frame); //links the JFrame used to EndScreen
+        //sets outcomeScreen as a JLabel importing win/lose image (depending on outcome parameter)
         outcomeScreen = new JLabel(new ImageIcon(importImage("images/" + outcome + ".png")));
-        outcomeScreen.setIcon(new ImageIcon(new javax.swing.ImageIcon(Objects.requireNonNull(getClass().getResource("images/" + outcome + ".png"))).getImage().getScaledInstance(350, 300, Image.SCALE_SMOOTH)));
-        outcomeScreen.setBounds(0, 0, 500, 400);
-        add(outcomeScreen);
+        //sets the win/lose image as an icon
+        outcomeScreen.setIcon(new ImageIcon(new javax.swing.ImageIcon(Objects.requireNonNull(getClass().
+                getResource("images/" + outcome + ".png"))).getImage().
+                getScaledInstance(350, 300, Image.SCALE_SMOOTH)));
 
-        JButton again = new JButton("Again?");
-        again.addActionListener(e -> {
-            getFrame().remove(this);
-            getFrame().add(new HomeScreen(getFrame()));
-            getFrame().revalidate();
-            getFrame().repaint();
+        outcomeScreen.setBounds(0, 0, 500, 400); //sets the bounds of the outcomeScreen
+
+
+        JButton again = new JButton("Again?"); //creates a button called Again
+        again.addActionListener(e -> { //sets up a new ActionListener using a lambda expression
+            getFrame().remove(this); //removes the EndScreen from the frame
+            getFrame().add(new HomeScreen(getFrame())); //adds a HomeScreen to the frame
+            getFrame().revalidate(); //adjusts the screen to fix removal/addition of components
+            getFrame().repaint(); //repaints the screen
         });
-        JButton quit = new JButton("Quit");
-        quit.addActionListener(e -> {
-            System.exit(0);
+        JButton quit = new JButton("Quit"); //creates a button called Quit
+        quit.addActionListener(e -> { //sets up a new ActionListener using a lambda expression
+            System.exit(0); //quits the program
         });
 
-        again.setBounds(25, 400, 150, 50);
-        quit.setBounds(125, 400, 150, 50);
 
-        UIPanel.setBounds(25, 400, 400, 50);
-        UIPanel.setBackground(getBackgroundColor());
-        UIPanel.add(again);
-        UIPanel.add(quit);
-        add(UIPanel);
+        UIPanel.setBounds(25, 400, 400, 50); //sets the bounds of the UIPanel
+        UIPanel.setBackground(getBackgroundColor()); //sets the background color of the UIPanel
+        UIPanel.add(again); //adds JButton again to UIPanel
+        UIPanel.add(quit); //adds JButton quit to UIPanel
+
+        add(outcomeScreen); //adds the outcomeScreen to the EndScreen
+        add(UIPanel); //adds the UIPanel to the EndScreen
 
 
-        wiggleTimer = new Timer(200, new ActionListener() {
+        wiggleTimer = new Timer(200, new ActionListener() { //uses the wiggleTimer with delay 200 and a new ActionListener
 
-            boolean shift = true;
+            boolean shift = true; //sets the outScreen to shift to the left
             @Override
-            public void actionPerformed(ActionEvent e) {
-                if(shift) {
+            public void actionPerformed(ActionEvent e) { //overridden method actionPerformed is defined
+                if(shift) {//checks if shift is true or false
+                    //shifts the X coordinate of outcomeScreen 5 units to the left
                     outcomeScreen.setLocation(outcomeScreen.getX() - 5, outcomeScreen.getY());
-                    shift = false;
+                    shift = false; //sets the shifting to the right
                 }
-                else{
+                else{ //run if shift is false
+                    //shifts the X coordinate of outcomeScreen 5 units to the right
                     outcomeScreen.setLocation(outcomeScreen.getX() + 5, outcomeScreen.getY());
-                    shift = true;
+                    shift = true; //sets the shifting to the left
                 }
             }
         });
-        if(outcome == "win") {
-            wiggleTimer.start();
+        if(outcome == "win") { //checks if outcome is win or lose
+            wiggleTimer.start(); //starts the animation if the outcome is win
         }
 
 
