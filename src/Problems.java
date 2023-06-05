@@ -21,39 +21,46 @@ public class Problems {
         this.answer = answer;
     }
 
+    //function to create a random math problem with 2 int
     public static Object[] randomOperator(int num1, int num2) {
+        //initialize object array 
         Object[] output = new Object[2];
 
+        //random numbers from 0-2 are generated
         int operation = (int)(Math.random() * 3);
         switch (operation) {
-            case 0:
+            case 0: //performs addition
                 output[0] = num1 + " + " + num2;
                 output[1] = num1 + num2;
                 break;
 
-            case 1:
+            case 1://performs subtraction
                 output[0] = Integer.max(num1, num2) + " - " + Integer.min(num1, num2);
                 output[1] = Math.abs(num1 - num2);
                 break;
 
-            case 2:
+            case 2://performs miltiplication
                 output[0] = num1 + " * " + num2;
                 output[1] = num1 * num2;
                 break;
-            default:
+            default: //exception thrown
                 throw new InvalidDnDOperationException("Invalid operator generated!");
 
         }
+        //array containing opertaion and result returned
         return output;
     }
 
+    //setter method for problem size
     public void setProblemSize(int problemSize) {
         this.problemSize = problemSize;
     }
+    //getter method fopr the problem size
     public int getProblemSize() {
         return problemSize;
     }
 
+    //override method to return question
     @Override
     public String toString() {
         return question;
