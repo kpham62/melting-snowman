@@ -1,8 +1,5 @@
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
-import java.awt.image.*;
-import java.util.Locale;
 
 //play screen is extended from game panel
 public class PlayScreen extends GamePanel{ //new class PlayScreen inherits GamePanel
