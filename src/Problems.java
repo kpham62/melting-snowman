@@ -1,9 +1,9 @@
 import java.awt.dnd.InvalidDnDOperationException;
 
-public class Problems {
+public class Problems { // defining a class named Problems
     private String question; //encapsulation of both the question and the answer
-    private double answer;
-    private int problemSize;
+    private double answer;  // private instance variable for holding an answer
+    private int problemSize; // private instance variable for holding the size of a problem
 
     public String getQuestion() { //implementing the getter method for the question
         return question;
@@ -39,7 +39,7 @@ public class Problems {
                 output[1] = Math.abs(num1 - num2);
                 break;
 
-            case 2://performs miltiplication
+            case 2://performs multiplication
                 output[0] = num1 + " * " + num2;
                 output[1] = num1 * num2;
                 break;
