@@ -1,3 +1,4 @@
+//reuired packages imported
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -6,34 +7,47 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.util.Objects;
 
+//class defined extending to JLabel
 public class SnowFlake extends JLabel {
-    private Timer timer;
-    final private Dimension size = new Dimension(10, 10);
-    final int speed = (int)((Math.random() * 3)) + 1;
+    private Timer timer; //timer object declared
+    final private Dimension size = new Dimension(10, 10); //set constant dimension of snowflake
+    final int speed = (int)((Math.random() * 3)) + 1; //snowflake speed
 
-    public SnowFlake(JPanel panel) {
+    //constructor
+    public SnowFlake(JPanel panel) { 
+        //set a random location for the snowflakes
         setLocation((int)(Math.random() * panel.getWidth()), (int)Math.random() * panel.getHeight());
+        //size of snowflake
         setSize(size);
+        //snowflake color
         setBackground(Color.WHITE);
         try {
+            //set the icon for the snowflake using an image
             setIcon(new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader()
                     .getResourceAsStream("images/snowflake.png")))));
         }
         catch(Exception e) {
+            //throws expection if error when loading image
             throw new RuntimeException();
         }
 
+      //set up a timer to run every 70 milliseconds
         timer = new Timer(70, new ActionListener() {
             @Override
 
+            /* if the snowflake has moved from the bottom of the panel
+            it resets it's psostition back to the top
+            */
             public void actionPerformed(ActionEvent e) {
                 if(getY() > panel.getHeight()) {
                     setLocation((int)(Math.random() * panel.getWidth()), 0);
                 }
 
+                //move the snowflake down the panel at the defined speed
                 setLocation(getX(), getY() + speed);
             }
         });
+        //timer starts
         timer.start();
     }
 
