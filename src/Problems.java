@@ -3,16 +3,7 @@ import java.awt.dnd.InvalidDnDOperationException;
 public class Problems {
     private String question; //encapsulation of both the question and the answer
     private double answer;
-
-    //method compares input (given by the user) and the answer data field to check if input is correct
-    public boolean check(double input) {
-        if(input == answer) {
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
+    private int problemSize;
 
     public String getQuestion() { //implementing the getter method for the question
         return question;
@@ -54,5 +45,17 @@ public class Problems {
 
         }
         return output;
+    }
+
+    public void setProblemSize(int problemSize) {
+        this.problemSize = problemSize;
+    }
+    public int getProblemSize() {
+        return problemSize;
+    }
+
+    @Override
+    public String toString() {
+        return question;
     }
 }
