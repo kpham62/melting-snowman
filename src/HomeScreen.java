@@ -8,7 +8,7 @@ import java.io.*;
 import java.util.Objects;
 import javax.imageio.*;
 
-public class HomeScreen extends GamePanel implements ActionListener {
+public class HomeScreen extends GamePanel implements ActionListener { //new class HomeScreen inherits GamePanel and implements ActionListener
     JButton[] buttonList = new JButton[] {new JButton("Easy"), new JButton("Medium"),
             new JButton("Hard"), new JButton("Insanity")}; // with JButton, add clickable buttons that allow the user to choose the difficulty
     // initialize image, myImage, isWiggling, titleScreenY, and titleScreenTimer
