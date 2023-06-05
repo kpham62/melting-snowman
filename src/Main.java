@@ -1,3 +1,11 @@
+/*
+CSCI 143 Obj-Orient Prog II with Java
+Highline College
+Professor Nizami, Syeda
+Team: Cynthia Lopez, Thomas Huynh, Kenny Pham
+Game Name: Melting Snowman
+ */
+
 import javax.swing.*;
 
 public class Main {
