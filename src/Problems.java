@@ -1,4 +1,4 @@
-import java.awt.dnd.InvalidDnDOperationException;
+import java.awt.dnd.InvalidDnDOperationException; //importing required java class for handling invalid drag and drop
 
 public class Problems { // defining a class named Problems
     private String question; //encapsulation of both the question and the answer
