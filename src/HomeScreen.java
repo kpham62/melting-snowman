@@ -1,12 +1,8 @@
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.*;
 import java.util.Objects;
-import javax.imageio.*;
 
 public class HomeScreen extends GamePanel implements ActionListener { //new class HomeScreen inherits GamePanel and implements ActionListener
     JButton[] buttonList = new JButton[] {new JButton("Easy"), new JButton("Medium"),
