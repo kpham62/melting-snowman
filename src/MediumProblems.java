@@ -11,6 +11,7 @@ public class MediumProblems extends Problems{
                 Object[] output = randomOperator(num1, num2);
                 setQuestion((String)output[0]);
                 setAnswer((Integer)output[1]);
+                setProblemSize(110);
                 break;
             case 1:
                 num1 = (int)(Math.random() * 2) + 4;
@@ -18,6 +19,7 @@ public class MediumProblems extends Problems{
 
                 setQuestion(num1 + "^" + num2);
                 setAnswer(Math.pow(num1, num2));
+                setProblemSize(100);
                 break;
             case 2:
                 num1 = (int)(Math.random() * 20)  + 10;
@@ -30,7 +32,8 @@ public class MediumProblems extends Problems{
                     }
                 }
                 setAnswer(LCM);
-                setQuestion("the LCM of " + num1 + " and " + num2);
+                setQuestion("The LCM of " + num1 + " and " + num2);
+                setProblemSize(200);
 
         }
     }
