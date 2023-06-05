@@ -55,7 +55,7 @@ public class HomeScreen extends GamePanel implements ActionListener { //new clas
          * title image moves down.
          */
 
-        titleScreenTimer = new Timer(70, new ActionListener() { // moving up and down animation for the title image, timer is how long it takes to go through the motion
+        titleScreenTimer = new Timer(70, new ActionListener() { // moving up and down animation for the title image, with 70 millisecond delay
             boolean movingUp = true; // moving up
 
             // using if/else, move title screen up and down, also using the integer value to determine the location
